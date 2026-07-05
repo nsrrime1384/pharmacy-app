@@ -1,7 +1,7 @@
 const xlsx = require("xlsx");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://<nsrrime1384_db_user>:<1384Aa1384>@cluster0.jymdeua.mongodb.net/?appName=Cluster0");
+mongoose.connect(process.env.key);
 
 const Product = mongoose.model("Product", {
   name: String,
