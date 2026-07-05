@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pharmacy</title>
+</head>
+
+<body>
+
+<h2>ثبت دارو</h2>
+
+<input id="name" placeholder="نام دارو"><br>
+<input id="qty" placeholder="تعداد"><br>
+<input id="exp" type="date"><br>
+
+<button onclick="add()">ثبت</button>
+
+<h2>داشبورد</h2>
+<p>کل: <span id="total"></span></p>
+<p>نزدیک انقضا: <span id="expiring"></span></p>
+<p>منقضی: <span id="expired"></span></p>
+
+<script>
+const API = "https://YOUR-SERVER-URL";
+
+async function add() {
+  await fetch(API + "/add", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      name: name.value,
+      quantity: qty.value,
+      expiry: exp.value
+    })
+  });
+}
+
+async function load() {
+  const all = await fetch(API + "/all").then(r => r.json());
+  const exp = await fetch(API + "/expiry-alerts").then(r => r.json());
+  const exd = await fetch(API + "/expired").then(r => r.json());
+
+  total.innerText = all.length;
+  expiring.innerText = exp.length;
+  expired.innerText = exd.length;
+}
+
+load();
+</script>
+
+</body>
+</html>
