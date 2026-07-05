@@ -60,3 +60,8 @@ cron.schedule("0 8 * * *", async () => {
 });
 
 app.listen(3000, () => console.log("Server running on 3000"));
+
+app.delete("/delete/:id", async (req,res)=>{
+  await Product.findByIdAndDelete(req.params.id);
+  res.send("Deleted");
+});
