@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 // 👇 اینجا لینک MongoDB خودتو بذار
-mongoose.connect("mongodb+srv://<nsrrime1384_db_user>:<t8PG3LzXt1CdohDU>@cluster0.jymdeua.mongodb.net/?appName=Cluster0");
+mongoose.connect("mongodb+srv://<nsr_sn1persan>:<1384A.a1384>@cluster0.jymdeua.mongodb.net/?appName=Cluster0");
 
 const Product = mongoose.model("Product", {
   name: String,
